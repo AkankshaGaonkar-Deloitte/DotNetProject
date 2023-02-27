@@ -21,8 +21,6 @@ builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<ILabelService,LabelService>();
 
 builder.Services.AddControllers();
-// builder.Services.AddScoped<ILabelService, LabelService>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(swagger =>  
 {  

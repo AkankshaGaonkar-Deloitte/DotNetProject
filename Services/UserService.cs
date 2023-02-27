@@ -27,16 +27,6 @@ public class UserService : IUserService
         return model;
     }
 
-    // public List<User> GetAllUsers()
-    // {
-    //     List < User > Users;
-    //     try {
-    //         Users = _context.User.Include(s=>s.Issue).ToList();
-    //     } catch (Exception) {
-    //         throw;
-    //     }
-    //     return Users;
-    // }
 
     public User GetUserById(int UserId)
     {

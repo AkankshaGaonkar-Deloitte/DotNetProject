@@ -5,7 +5,6 @@ using dotnetproject.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace dotnetproject.Controllers;
-
 [ApiController]
 [Route("[controller]")]
 [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
@@ -60,7 +59,6 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
-
 
     [HttpPut]
     [Route("[action]")]

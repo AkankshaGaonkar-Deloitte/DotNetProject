@@ -36,9 +36,5 @@ public class Issue
         }
         public virtual ICollection<Label>? Labels{get;set;}
 
-        // public ICollection<Label> labels{
-        //     get;
-        //     set;
-        // }
     }
 }

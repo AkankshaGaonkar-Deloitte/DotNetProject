@@ -1,12 +1,10 @@
 using dotnetproject.Models;
 using Microsoft.EntityFrameworkCore;
-// using DotnetAssignment.Services.ProjectService;
 namespace dotnetproject.Services;
-// namespace DotnetAssignment.Services.ProjectService;
 public class LabelService:ILabelService
 {
     private ProjectContext _context;
-    // public ProjectService projService;
+
 
     public LabelService(ProjectContext context) {
         _context = context;   

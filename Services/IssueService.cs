@@ -71,27 +71,6 @@ public class IssueService:IIssueService
         return issueList;
     }
 
-    // public ResponseModel SaveIssue(IssueDTO issueModel)
-    // {
-    //     ResponseModel model = new ResponseModel();
-    //     try {
-    //             Issue issue = new Issue();
-    //             issue.IssueDescription = issueModel.IssueDescription;
-    //             issue.projectId = issueModel.projectId;
-    //             issue.IssueTittle = issueModel.IssueTittle;
-    //             _context.Add < Issue > (issue);
-    //             model.Messsage = "Issue Inserted Successfully";
-
-    //         // }
-    //         _context.SaveChanges();
-           
-    //     } catch (Exception ex) {
-            
-    //         model.Messsage = "Error : " + ex.Message;
-    //     }
-    //     return model;
-    // }
-
      public ResponseModel SaveIssue(IssueDTO Issue)
     {
         ResponseModel model = new ResponseModel();

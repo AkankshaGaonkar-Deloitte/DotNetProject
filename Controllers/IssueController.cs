@@ -107,22 +107,4 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-
-    
-
-    // [HttpGet]
-    // [Route("[action]/projectid")]
-    // public IActionResult GetListOfIssuesBy()
-
-    // [HttpPut]
-    // [Route("[action]")]
-    // public IActionResult UpdateIssue(int id){
-    //     try {
-    //         var model = _issueService.SaveIssue(issueModel);
-    //         return Ok(model);
-    //     } catch (Exception) {
-    //         return BadRequest();
-    //     }
-
-    // }
 }

@@ -12,30 +12,6 @@ public class UserController:ControllerBase{
     public UserController(IUserService service) {
         _userService = service;
     }
-
-    // [HttpGet]
-    // [Route ("[action]")]
-    // public IActionResult GetAllUsers() {
-    //     try {
-    //         var users = _userService.;
-    //         if (issues == null) return NotFound();
-    //         return Ok(issues);
-    //     } catch (Exception e) {
-    //         return BadRequest();
-    //     }
-    // }
-
-    // [HttpGet]
-    // [Route("[action]/id")]
-    // public IActionResult GetUserById(int id) {
-    //     try {
-    //         var user = _userService.GetUserById(id);
-    //         if (user == null) return NotFound();
-    //         return Ok(user);
-    //     } catch (Exception) {
-    //         return BadRequest();
-    //     }
-    // }
     
     [HttpPost]
     [Route("[action]")]
@@ -48,14 +24,4 @@ public class UserController:ControllerBase{
         }
     }
 
-    // [HttpDelete]
-    // [Route("[action]")]
-    // public IActionResult DeleteUser(int id) {
-    //     try {
-    //         var model = _userService.DeleteUser(id);
-    //         return Ok(model);
-    //     } catch (Exception) {
-    //         return BadRequest();
-    //     }
-    // }
 }
