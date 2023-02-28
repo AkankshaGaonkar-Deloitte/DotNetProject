@@ -13,7 +13,7 @@ public class ProjectController:ControllerBase{
     public ProjectController(IProjectService service) {
         _projectService = service;
     }
-    
+     [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]")]
     public IActionResult GetAllProjects() {
@@ -25,7 +25,7 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
-
+     [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]/id")]
     public IActionResult GetProjectById(int id) {
@@ -37,7 +37,7 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
-    
+    [Authorize(Roles="admin")]
     [HttpPost]
     [Route("[action]")]
     public IActionResult SaveProjects(ProjectDTO projectModel) {
@@ -48,6 +48,7 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
+    [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]/id")]
     public IActionResult GetIssuesByProjectId(int id) {
@@ -59,7 +60,7 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
-
+     [Authorize(Roles="admin")]
     [HttpPut]
     [Route("[action]")]
     public IActionResult UpdateProject(int projectId,string description) {
@@ -70,7 +71,7 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
-
+    [Authorize(Roles="admin")]
     [HttpDelete]
     [Route("[action]")]
     [Authorize(Roles="admin")]
