@@ -12,4 +12,5 @@ public interface IIssueService
         ResponseModel UpdateStatus(int issueId,string status);
         ResponseModel AssignIssueToUser(int issueId,int userId);
         Issue SearchIssue(string issueTittle, string issueDescription);
+        List<Issue> SearchByDSQL(string dsql);
     }

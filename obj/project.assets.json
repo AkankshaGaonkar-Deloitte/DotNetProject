@@ -5883,11 +5883,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/akanksha5/dotnetproject/dotnetproject.csproj",
+      "projectUniqueName": "/home/akanksha5/DotNetProject/dotnetproject.csproj",
       "projectName": "dotnetproject",
-      "projectPath": "/home/akanksha5/dotnetproject/dotnetproject.csproj",
+      "projectPath": "/home/akanksha5/DotNetProject/dotnetproject.csproj",
       "packagesPath": "/home/akanksha5/.nuget/packages/",
-      "outputPath": "/home/akanksha5/dotnetproject/obj/",
+      "outputPath": "/home/akanksha5/DotNetProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/akanksha5/.nuget/NuGet/NuGet.Config"

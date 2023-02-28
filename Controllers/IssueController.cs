@@ -16,7 +16,7 @@ public class IssueController:ControllerBase{
         _issueService = service;
     }
 
-    [Authorize(Roles="admin,projectManager,standard")]
+    // [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]")]
     public IActionResult GetAllIssues() {
@@ -109,5 +109,24 @@ public class IssueController:ControllerBase{
             Console.WriteLine(ex);
             return BadRequest();
         }
+    }
+
+    [HttpGet]
+    [Route("[action]/dsql")]
+    public IActionResult SearchByDSQL([FromQuery]string dsql){
+        try{
+            if (string.IsNullOrWhiteSpace(dsql)) {
+     return BadRequest("No DSQL query specified.");}
+     var issues = _issueService.SearchByDSQL(dsql);
+            if (issues == null) return NotFound();
+            return Ok(issues);
+
+        }
+        catch (Exception ex) {
+
+            Console.WriteLine(ex);
+            return BadRequest();
+        }
+
     }
 }

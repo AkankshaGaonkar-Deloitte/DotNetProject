@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 namespace dotnetproject.Controllers;
 [ApiController]
 [Route("[controller]")]
-[Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
+// [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
 public class ProjectController:ControllerBase{
     IProjectService _projectService;
     public ProjectController(IProjectService service) {
         _projectService = service;
     }
-     [Authorize(Roles="admin,projectManager,standard")]
+    [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]")]
     public IActionResult GetAllProjects() {
@@ -60,7 +60,7 @@ public class ProjectController:ControllerBase{
             return BadRequest();
         }
     }
-     [Authorize(Roles="admin")]
+    [Authorize(Roles="admin")]
     [HttpPut]
     [Route("[action]")]
     public IActionResult UpdateProject(int projectId,string description) {

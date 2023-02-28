@@ -99,19 +99,19 @@ public class IssueService:IIssueService
         return model;
     }
 
-    public ResponseModel UpdateStatus(int issueId, string status)
-    {
-        ResponseModel model = new ResponseModel();
-        try {
-                Issue issue = _context.Find<Issue>(issueId);
-                issue.Status = status;
-                model.Messsage = "Status Updated Successfully";
-            _context.SaveChanges();
-        } catch (Exception ex) {
-            model.Messsage = "Error : " + ex.Message;
-        }
-        return model;
-    }
+    // public ResponseModel UpdateStatus(int issueId, string status)
+    // {
+    //     ResponseModel model = new ResponseModel();
+    //     try {
+    //             Issue issue = _context.Find<Issue>(issueId);
+    //             issue.Status = status;
+    //             model.Messsage = "Status Updated Successfully";
+    //         _context.SaveChanges();
+    //     } catch (Exception ex) {
+    //         model.Messsage = "Error : " + ex.Message;
+    //     }
+    //     return model;
+    // }
     public ResponseModel UpdateIssue(int issueId, IssueUpdateDTO tempIssue)
     {
         ResponseModel model = new ResponseModel();
@@ -130,11 +130,49 @@ public class IssueService:IIssueService
 
     public Issue SearchIssue(string issueTittle, string issueDescription){
             Issue issue = _context.Issue.FirstOrDefault(i=> i.IssueTittle == issueTittle && i.IssueDescription == issueDescription);
-            // var issueList = _context.Issue.Where(a=> a.IssueType == );
          return issue;
     }
 
-    // public Issue SearchByDSQL(){
+    
+     // var issueList = _context.Issue.Where(a=> a.IssueType == );
+    public List<Issue> SearchByDSQL([FromQuery]string dsql){
+
+    var query = $"SELECT * FROM Issue WHERE {dsql}";
+    var issues = _context.Issue.FromSqlRaw<Issue>(query).ToList();
+
+
+    return issues;
         
-    // }
+    }
+    public ResponseModel UpdateStatus(int issueId, string status)
+    {    
+        ResponseModel model = new ResponseModel();
+        try {
+            Issue issue = _context.Find<Issue>(issueId);
+            int currentStatus=0, oldstatus=0;
+            foreach (string i in Enum.GetNames(typeof(IssueStatus)))
+            {
+                if (i==status) {
+                        break;
+                }
+                currentStatus=currentStatus+1;
+            }
+            foreach (string i in Enum.GetNames(typeof(IssueStatus)))
+            {
+                if (i==issue.Status){
+                    break;
+                }
+                 oldstatus=oldstatus+1;
+            }
+                if(currentStatus<=oldstatus+1){
+                    issue.Status = status;
+                    model.Messsage = "Status Updated Successfully";
+                    _context.SaveChanges();
+                }
+                } catch (Exception ex) {
+            model.Messsage = "Error : " + ex.Message;
+        }
+        return model;
+    }
+
 }

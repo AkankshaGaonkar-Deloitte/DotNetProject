@@ -123,12 +123,12 @@ namespace dotnetproject.Migrations
                     IssueDescription = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     projectId = table.Column<int>(type: "int", nullable: false),
-                    Reporteruserid = table.Column<int>(type: "int", nullable: true),
-                    Assigneeuserid = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IssueType = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Reporteruserid = table.Column<int>(type: "int", nullable: true),
+                    Assigneeuserid = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

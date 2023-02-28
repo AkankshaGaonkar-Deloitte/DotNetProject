@@ -13,7 +13,7 @@ public class RoleController:ControllerBase{
     public RoleController(IRoleService service) {
         _roleService = service;
     }
-    [Authorize(Roles="admin")]
+    // [Authorize(Roles="admin")]
     [HttpPost]
     [Route("[action]")]
     public IActionResult CreateRole(RoleDTO roleModel) {
@@ -24,7 +24,7 @@ public class RoleController:ControllerBase{
             return BadRequest();
         }
     }
-    [Authorize(Roles="admin")]
+    // [Authorize(Roles="admin")]
     [HttpPut]
     [Route("[action]")]
     public IActionResult AssignRoleToUser(int UserId, int RoleId) {
