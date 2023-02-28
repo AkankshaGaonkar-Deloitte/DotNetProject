@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using dotnetproject.models;
 using dotnetproject.Models;
-
 namespace dotnetproject.Services;
 public class UserService : IUserService
 {
@@ -26,7 +25,6 @@ public class UserService : IUserService
         }
         return model;
     }
-
 
     public User GetUserById(int UserId)
     {

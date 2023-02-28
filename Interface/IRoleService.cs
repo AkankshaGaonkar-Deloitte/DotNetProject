@@ -1,5 +1,4 @@
 using dotnetproject.Models;
-
 namespace dotnetproject.Services;
 public interface IRoleService{
     ResponseModel AddRole(RoleDTO model);

@@ -5,7 +5,6 @@ public class LabelService:ILabelService
 {
     private ProjectContext _context;
 
-
     public LabelService(ProjectContext context) {
         _context = context;   
     }

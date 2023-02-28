@@ -1,6 +1,5 @@
 using dotnetproject.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace dotnetproject.Services;
 public class ProjectService:IProjectService
 {

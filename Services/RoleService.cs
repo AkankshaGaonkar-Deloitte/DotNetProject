@@ -1,5 +1,4 @@
 using dotnetproject.Models;
-
 namespace dotnetproject.Services;
 public class RoleService : IRoleService
 {

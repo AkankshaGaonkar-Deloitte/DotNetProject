@@ -9,8 +9,8 @@ public class Label
     this.Issues=new HashSet<Issue>();}
     [Key]
     public int Id {get;set;}
-     public string LabelName {get;set;}
+    public string LabelName {get;set;}
 
-     [JsonIgnore]
-      public virtual ICollection<Issue>? Issues{get;set;}
+    [JsonIgnore]
+    public virtual ICollection<Issue>? Issues{get;set;}
 }

@@ -18,7 +18,6 @@ public class Project
             get;
             set;
         }
-        // [JsonIgnore]
         //navigation properties
         public ICollection<Issue> issues{
             get;

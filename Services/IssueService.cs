@@ -2,7 +2,6 @@ using dotnetproject.models;
 using dotnetproject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace dotnetproject.Services;
 
 public class IssueService:IIssueService
@@ -11,8 +10,6 @@ public class IssueService:IIssueService
     public IssueService(ProjectContext context) {
         _context = context;
     }
-
-
     public ResponseModel AssignIssueToUser(int issueId, int userId)
     {
         ResponseModel model = new ResponseModel();
@@ -137,7 +134,7 @@ public class IssueService:IIssueService
          return issue;
     }
 
-    public Issue SearchByDSQL(){
+    // public Issue SearchByDSQL(){
         
-    }
+    // }
 }

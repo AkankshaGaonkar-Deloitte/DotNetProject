@@ -1,6 +1,5 @@
 using dotnetproject.models;
 using dotnetproject.Models;
-
 namespace dotnetproject.Services;
 public interface IUserService{
     User GetUserById(int UserId);

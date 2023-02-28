@@ -23,18 +23,19 @@ public class Issue
             get;
             set;
         }
-        public virtual User ?Reporter{get;set;}
-        public virtual User? Assignee {get;set;}
-        public string Status{get;set;}
-        public string IssueType{get;set;}
-
-        [JsonIgnore]
-        //navigation properties
-        public Project project{
+        public string Status{
             get;
             set;
         }
+        public string IssueType{
+            get;
+            set;
+        }
+        //navigation properties
+        public virtual User ?Reporter{get;set;}
+        public virtual User? Assignee {get;set;}
         public virtual ICollection<Label>? Labels{get;set;}
-
+        [JsonIgnore]
+        public Project project{get;set;}
     }
 }
