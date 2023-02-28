@@ -8,7 +8,7 @@ namespace dotnetproject.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-// [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
+[Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
 public class LabelController:ControllerBase{
     ILabelService _labelService;
     public LabelController(ILabelService service) {

@@ -9,14 +9,14 @@ namespace dotnetproject.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-// [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
+[Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
 public class IssueController:ControllerBase{
     IIssueService _issueService;
     public IssueController(IIssueService service) {
         _issueService = service;
     }
 
-    // [Authorize(Roles="admin,projectManager,standard")]
+    [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]")]
     public IActionResult GetAllIssues() {

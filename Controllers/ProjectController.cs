@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace dotnetproject.Controllers;
 [ApiController]
 [Route("[controller]")]
-// [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
+[Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
 public class ProjectController:ControllerBase{
     IProjectService _projectService;
     public ProjectController(IProjectService service) {
@@ -82,6 +82,25 @@ public class ProjectController:ControllerBase{
         } catch (Exception) {
             return BadRequest();
         }
+    }
+
+    [HttpGet]
+    [Route("[action]/dsql")]
+    public IActionResult SearchProjectByDSQL([FromQuery]string dsql){
+        try{
+            if (string.IsNullOrWhiteSpace(dsql)) {
+     return BadRequest("No DSQL query specified.");}
+     var project = _projectService.SearchProjectByDSQL(dsql);
+            if (project == null) return NotFound();
+            return Ok(project);
+
+        }
+        catch (Exception ex) {
+
+            Console.WriteLine(ex);
+            return BadRequest();
+        }
+
     }
 
 }

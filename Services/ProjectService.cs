@@ -1,4 +1,5 @@
 using dotnetproject.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace dotnetproject.Services;
 public class ProjectService:IProjectService
@@ -92,5 +93,12 @@ public class ProjectService:IProjectService
             throw;
         }
         return issues;
+    }
+    public List<Project> SearchProjectByDSQL([FromQuery]string dsql){
+
+    var query = $"SELECT * FROM Project WHERE {dsql}";
+    var project = _context.Project.FromSqlRaw<Project>(query).ToList();
+
+    return project;
     }
 }
