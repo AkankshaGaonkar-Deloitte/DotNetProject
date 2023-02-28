@@ -4,7 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.Extensions.Configuration;  
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace dotnetproject.Controllers;
 
@@ -25,26 +27,29 @@ namespace dotnetproject.Controllers;
         {
             try
             {
-                User user = _context.user.SingleOrDefault(user=>user.UserName==loginDTO.UserName);
-                if (string.IsNullOrEmpty(loginDTO.UserName) ||
-                string.IsNullOrEmpty(loginDTO.Password))
-                    return BadRequest("Username and/or Password not specified");
+                User user =  _context.user.Include(s=>s.Roles).SingleOrDefault(user=>user.UserName==loginDTO.UserName);
+                if (user == null || string.IsNullOrEmpty(loginDTO.UserName) ||
+                string.IsNullOrEmpty(loginDTO.Password)){
+                    return BadRequest("Invalid username or password");
+                }
                 if (loginDTO.UserName.Equals(user.UserName) &&
                 loginDTO.Password.Equals(user.Password))
-                {
-                    var secretKey = new SymmetricSecurityKey
-                    (Encoding.UTF8.GetBytes("Thisismysecretkey"));
-                    var signinCredentials = new SigningCredentials
-                   (secretKey, SecurityAlgorithms.HmacSha256);
+                {   
+                    var claims = user.Roles.Select(role => new Claim(ClaimTypes.Role, role.title));
+                    List<Claim> Claims=new List<Claim>();
+                    foreach (var i in user.Roles){
+                        Claims.Add(new Claim(ClaimTypes.Role,i.title.ToString()));
+                    }
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Thisismysecretkey"));
+                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                     var jwtSecurityToken = new JwtSecurityToken(
-                        "https://localhost:7018",  
+                       "https://localhost:7018",  
                         "https://localhost:7018", 
-                        claims:new List<Claim>(){new Claim("roles","admin")},
+                        claims:Claims,
                         expires: DateTime.Now.AddMinutes(10),
                         signingCredentials: signinCredentials
                     );
-                    return Ok(new JwtSecurityTokenHandler().
-                    WriteToken(jwtSecurityToken));
+                    return Ok(new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken));
                 }
             }
             catch

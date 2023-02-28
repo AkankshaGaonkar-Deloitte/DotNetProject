@@ -14,9 +14,10 @@ public class LabelController:ControllerBase{
     public LabelController(ILabelService service) {
         _labelService = service;
     }
-
+     [Authorize(Roles="admin,projectManager")]
     [HttpPut]
     [Route("[action]")]
+    [Authorize(Roles="Admin,ProjectManager,Standard")]
     public IActionResult AttachLabelsToIssue(int issueId,int labelId) {
         try {
             var model = _labelService.AttachLabeltoIssue(issueId,labelId);
@@ -25,6 +26,7 @@ public class LabelController:ControllerBase{
             return BadRequest();
         }
     }
+    [Authorize(Roles="admin,projectManager")]
     [HttpPost]
     [Route("[action]")]
     public IActionResult AddLablels(Label label) {
@@ -35,6 +37,7 @@ public class LabelController:ControllerBase{
             return BadRequest();
         }
     }
+    [Authorize(Roles="admin,projectManager")]
     [HttpDelete]
     [Route("[action]")]
     public IActionResult DeleteLabelFromIssue(int issueId, int labelId) {

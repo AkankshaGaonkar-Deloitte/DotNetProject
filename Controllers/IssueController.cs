@@ -16,6 +16,7 @@ public class IssueController:ControllerBase{
         _issueService = service;
     }
 
+    [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]")]
     public IActionResult GetAllIssues() {
@@ -27,7 +28,7 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-
+    [Authorize(Roles="admin,projectManager,standard")]
     [HttpGet]
     [Route("[action]/id")]
     public IActionResult GetIssueById(int id) {
@@ -39,7 +40,7 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-    
+    [Authorize(Roles="admin,projectManager")]
     [HttpPost]
     [Route("[action]")]
     public IActionResult SaveIssue(IssueDTO issueModel) {
@@ -50,7 +51,7 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-    
+    [Authorize(Roles="admin,projectManager")]
     [HttpDelete]
     [Route("[action]")]
     [Authorize(Roles="admin")]
@@ -62,6 +63,7 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
+    [Authorize(Roles="admin,projectManager")]
     [HttpPut]
     [Route("[action]")]
     public IActionResult UpdateIssue(int issueId,IssueUpdateDTO issueModel) {
@@ -72,7 +74,8 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-     [HttpPut]
+    [Authorize(Roles="admin,projectManager")]
+    [HttpPut]
     [Route("[action]")]
     public IActionResult UpdateStatus(int issueId,string status) {
         try {
@@ -82,7 +85,7 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-
+    [Authorize(Roles="admin,projectManager")]
     [HttpPut]
     [Route("[action]")]
     public IActionResult AssignIssueToUser(int issueId,int userId) {
@@ -93,8 +96,8 @@ public class IssueController:ControllerBase{
             return BadRequest();
         }
     }
-
-     [HttpGet]
+    
+    [HttpGet]
     [Route("[action]/issueTittle/issueDescription")]
     public IActionResult SearchIssue(string issueTittle, string issueDescription) {
         try {
