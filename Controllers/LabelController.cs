@@ -14,10 +14,9 @@ public class LabelController:ControllerBase{
     public LabelController(ILabelService service) {
         _labelService = service;
     }
-     [Authorize(Roles="admin,projectManager")]
-    [HttpPut]
+  [HttpPut]
     [Route("[action]")]
-    [Authorize(Roles="Admin,ProjectManager,Standard")]
+    [Authorize(Roles="admin,projectManager,standard")]
     public IActionResult AttachLabelsToIssue(int issueId,int labelId) {
         try {
             var model = _labelService.AttachLabeltoIssue(issueId,labelId);

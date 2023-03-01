@@ -27,6 +27,7 @@ public class RoleController:ControllerBase{
 
     [HttpPut]
     [Route("[action]")]
+    [Authorize(Roles="admin")]
     public IActionResult AssignRoleToUser(int UserId, int RoleId) {
         try {
             var model = _roleService.AssignRole(UserId,RoleId);
