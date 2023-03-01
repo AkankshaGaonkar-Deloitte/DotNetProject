@@ -11,7 +11,7 @@ using dotnetproject;
 namespace dotnetproject.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20230228083206_AddProject")]
+    [Migration("20230301041506_AddProject")]
     partial class AddProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

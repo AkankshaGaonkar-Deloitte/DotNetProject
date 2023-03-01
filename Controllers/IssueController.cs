@@ -11,9 +11,11 @@ namespace dotnetproject.Controllers;
 [Route("[controller]")]
 [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)] 
 public class IssueController:ControllerBase{
+    ILogger<IssueController> _issuelogger;
     IIssueService _issueService;
-    public IssueController(IIssueService service) {
+    public IssueController(IIssueService service,ILogger<IssueController> issuelogger) {
         _issueService = service;
+        _issuelogger = issuelogger;
     }
 
     [Authorize(Roles="admin,projectManager,standard")]
@@ -22,6 +24,7 @@ public class IssueController:ControllerBase{
     public IActionResult GetAllIssues() {
         try {
             var issues = _issueService.GetIssueList();
+            _issuelogger.LogInformation("Getting all the list of issues");
             if (issues == null) return NotFound();
             return Ok(issues);
         } catch (Exception) {
@@ -34,6 +37,7 @@ public class IssueController:ControllerBase{
     public IActionResult GetIssueById(int id) {
         try {
             var issues = _issueService.GetIssueDetailsById(id);
+            _issuelogger.LogInformation("Getting the issue By id");
             if (issues == null) return NotFound();
             return Ok(issues);
         } catch (Exception) {
@@ -46,6 +50,7 @@ public class IssueController:ControllerBase{
     public IActionResult SaveIssue(IssueDTO issueModel) {
         try {
             var model = _issueService.SaveIssue(issueModel);
+            _issuelogger.LogInformation("Add Issue");
             return Ok(model);
         } catch (Exception) {
             return BadRequest();
@@ -58,6 +63,7 @@ public class IssueController:ControllerBase{
     public IActionResult DeleteIssue(int id) {
         try {
             var model = _issueService.DeleteIssue(id);
+            _issuelogger.LogInformation("Delete Issues");
             return Ok(model);
         } catch (Exception) {
             return BadRequest();
@@ -69,6 +75,7 @@ public class IssueController:ControllerBase{
     public IActionResult UpdateIssue(int issueId,IssueUpdateDTO issueModel) {
         try {
             var model = _issueService.UpdateIssue(issueId,issueModel);
+            _issuelogger.LogInformation("Update Issues");
             return Ok(model);
         } catch (Exception) {
             return BadRequest();
@@ -80,6 +87,7 @@ public class IssueController:ControllerBase{
     public IActionResult UpdateStatus(int issueId,string status) {
         try {
             var model = _issueService.UpdateStatus(issueId,status);
+            _issuelogger.LogInformation("Update Status");
             return Ok(model);
         } catch (Exception) {
             return BadRequest();
@@ -91,6 +99,7 @@ public class IssueController:ControllerBase{
     public IActionResult AssignIssueToUser(int issueId,int userId) {
         try {
             var model = _issueService.AssignIssueToUser(issueId,userId);
+            _issuelogger.LogInformation("Assign issue to user");
             return Ok(model);
         } catch (Exception) {
             return BadRequest();
@@ -102,6 +111,7 @@ public class IssueController:ControllerBase{
     public IActionResult SearchIssue(string issueTittle, string issueDescription) {
         try {
             var issues = _issueService.SearchIssue(issueTittle,issueDescription);
+            _issuelogger.LogInformation("Search Issues");
             if (issues == null) return NotFound();
             return Ok(issues);
         } catch (Exception ex) {
